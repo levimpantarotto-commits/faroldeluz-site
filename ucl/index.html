@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Introdutório UCL (Malha de Calibração Universal) | Gustavo Amorim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #030712;
+            --secondary-bg: #0b1120;
+            --accent-gold: #d4af37;
+            --accent-gold-bright: #fcd34d;
+            --text-light: #f8f9fa;
+            --text-muted: #94a3b8;
+            --glass: rgba(15, 23, 42, 0.6);
+            --glass-border: rgba(212, 175, 55, 0.2);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* --- Estilo Universo (Stars & Nebula) --- */
+        .universe-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #030712 100%);
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0; left: 0; width: 200%; height: 200%;
+            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            opacity: 0.4;
+            animation: move-stars 150s linear infinite;
+        }
+
+        @keyframes move-stars {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-50%, -50%); }
+        }
+
+        .nebula {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            filter: blur(80px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* --- Typography & Layout --- */
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+        section { padding: 100px 0; position: relative; }
+
+        /* --- White Offer Card (Novo estilo do usuário - Compacto) --- */
+        .white-card {
+            background: #ffffff;
+            color: #363457;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 480px;
+            margin: 30px auto;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .white-card h3 {
+            color: #363457;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .white-card ul {
+            list-style: none;
+            display: inline-block;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .white-card li {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 400;
+        }
+
+        .white-card li::before {
+            content: '✔';
+            color: #363457;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .white-card .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 5px 0 15px 0;
+            display: block;
+        }
+
+        .white-card .action-btn {
+            background: #363457;
+            color: #fff;
+            padding: 12px 35px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .white-card .footer-info {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 120px 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* --- Image Layouts --- */
+        .hero-header-split {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            align-items: center;
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+        }
+        .hero-centered {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-symbol-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .hero-emblem {
+            width: 100%;
+            max-width: 200px;
+            filter: drop-shadow(0 0 30px rgba(212,175,55,0.5));
+            animation: pulseSimple 5s ease-in-out infinite;
+        }
+        @keyframes pulseSimple {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.03); opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .hero-header-split { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+            .hero-emblem { margin-bottom: 20px; }
+        }
+        .section-with-image {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .section-img {
+            width: 100%;
+            filter: drop-shadow(0 0 30px rgba(212,175,55,0.4));
+        }
+        .section-with-image {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        .section-img {
+            width: 100%;
+            filter: drop-shadow(0 0 30px rgba(212,175,55,0.4));
+        }
+        .emf-symbol-badge {
+            width: 80px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 15px rgba(212,175,55,0.5));
+        }
+        @media (max-width: 768px) {
+            .hero-with-image { grid-template-columns: 1fr; text-align: center; }
+            .section-with-image { grid-template-columns: 1fr; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        h1 {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p { font-size: 1.3rem; color: var(--text-muted); margin-bottom: 20px; }
+
+        .btn {
+            display: inline-block;
+            padding: 22px 55px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #b8860b 100%);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+        }
+
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5); }
+
+        /* --- Content Blocks --- */
+        .glass-box {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 50px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .section-tag {
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h2 { font-size: 2.8rem; margin-bottom: 30px; text-align: left; }
+
+        .content-text p { margin-bottom: 20px; font-size: 1.15rem; color: #e2e8f0; }
+
+        .curriculum-list { list-style: none; margin-top: 30px; }
+        .curriculum-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; gap: 15px;
+            align-items: flex-start;
+        }
+        .curriculum-list li::before { content: '✦'; color: var(--accent-gold); font-weight: bold; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { padding: 80px 0; text-align: center; border-top: 1px solid var(--glass-border); color: var(--text-muted); }
+
+        /* --- Foto Gustavo --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-photo img {
+            width: 100%;
+            display: block;
+            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.3));
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.22rem !important; color: #fff !important; background: none !important; -webkit-text-fill-color: initial !important; }
+            .hero p { font-size: 1.1rem !important; color: #eee !important; }
+            .btn { background: #D4AF37 !important; color: #000 !important; font-weight: bold !important; padding: 18px 40px !important; }
+            .hero-symbol-bg { opacity: 0.15 !important; }
+            h2 { font-size: 2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .about-photo { max-width: 300px; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="universe-bg">
+        <div class="stars"></div>
+        <div class="nebula" style="top: 15%; right: 10%;"></div>
+        <div class="nebula" style="bottom: 15%; left: 10%;"></div>
+    </div>
+
+    <section class="hero">
+        <img src="../assets/emf_symbol.png" alt="" class="hero-symbol-bg" />
+        <div class="container">
+            <div class="hero-header-split">
+                <img src="../assets/emf_symbol.png" alt="EMF Gold Symbol" class="hero-emblem" />
+                <div>
+                    <span class="section-tag">A Grande Evolução</span>
+                    <h1>Workshop Introdutório UCL (Malha de Calibração Universal)</h1>
+                    <p style="font-size: 1.25rem; color: var(--text-muted); margin: 0;">Um Sistema Evolucionário em seu Corpo Energético.</p>
+                </div>
+            </div>
+
+            <div class="hero-centered">
+                <div class="white-card" style="margin: 0 auto; max-width: 600px; text-align: left;">
+                    <h3>Workshop Introdutório UCL (Malha de Calibração Universal)</h3>
+                    <ul>
+                        <li>6 horas de Workshop</li>
+                        <li>Acesso às aulas gravadas</li>
+                        <li>Apostila Ilustrada</li>
+                        <li>Vídeos de Instrução das Sessões</li>
+                    </ul>
+                    <span class="price">R$ 370,00</span>
+                    <a href="https://site.faroldeluz.com.br/ucl/" class="action-btn">QUERO GARANTIR MINHA VAGA</a>
+                    <div class="footer-info">
+                        COMPRA 100% SEGURA – CANCELANDO EM 7 DIAS, REEMBOLSO IMEDIATO – ACESSO POR 12 MESES
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        
+        <div class="glass-box reveal">
+            <span class="section-tag">Introdução</span>
+            <h2>O Chamado da Grande Evolução</h2>
+            <div class="content-text">
+                <p>Nesta era da Grande Evolução, estamos elevando a frequência de nossa energia da maneira mais consciente e coerente, tanto pessoal quanto coletivamente. Em algum nível, cada um de nós sabe que escolhemos estar aqui neste exato momento!</p>
+                <p>A consciência humana está evoluindo e essa evolução se reflete em seu corpo energético. Você está pronto para aprender como acessar mais de sua energia universal e como direcionar essa energia com maior clareza e sabedoria?</p>
+            </div>
+        </div>
+
+        <div class="glass-box reveal">
+            <span class="section-tag">A Estrutura</span>
+            <h2>O que é a Malha (UCL)?</h2>
+            <div class="section-with-image">
+                <div>
+                    <img src="../assets/malha_nobg.png" alt="Malha de Calibração Universal" class="section-img" style="border-radius: 0;" />
+                </div>
+                <div class="content-text">
+                    <p>A Malha de Calibração Universal (Universal Calibration Lattice&reg; – UCL) é um sistema em sua anatomia energética, irradiando do próprio centro de seu ser. A primeira parte do Programa de Crescimento Pessoal é uma introdução aprofundada à teoria e dinâmica da sua Malha de Calibração Universal.</p>
+                    <p>Neste workshop acelerado, você aprenderá como a Malha impacta sua consciência e experimentará como ela apoia sua habilidade de co-criar sua vida mais iluminada! Você pode usar essas informações de maneiras práticas para aprimorar suas habilidades de viver com consciência energética e acelerar sua evolução.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-box reveal">
+            <span class="section-tag">Conteúdo</span>
+            <h2>O Que Você Vai Aprender</h2>
+            <div class="content-text">
+                <p>Nesta aula você aprenderá os fundamentos da Malha de Calibração Universal para se tornar mais de quem você é na energia do amor infinito.</p>
+                <ul class="curriculum-list">
+                    <li><strong>1. Teoria da Malha de Calibração Universal:</strong> Aprenda os fundamentos da Malha de Calibração Universal, a evolução da sua anatomia energética, que lhe permitirá integrar mais de quem você é na energia do amor infinito.</li>
+                    <li><strong>2. Varredura em Espiral:</strong> Um exercício único para energizar todo o seu corpo, o sistema ósseo, o sistema nervoso central, o sistema endócrino e o sistema energético dos chakras, elevando sua vibração.</li>
+                    <li><strong>3. Teoria dos Padrões Sagrados de Luz e Energia:</strong> Os Padrões Sagrados são padrões de energia em forma de octaedro dentro de sua Malha. Cada padrão é preenchido com os padrões geométricos únicos de quem você é.</li>
+                    <li><strong>4. Varredura Alternante:</strong> Um exercício em 3 passos para potencializar sua intenção co-criativa.</li>
+                    <li><strong>5. Símbolo de Ativação Energética:</strong> Uma maneira rápida e fácil de ativar a energia de harmonia e equilíbrio para qualquer pessoa e situação.</li>
+                    <li><strong>6. Símbolo de Energização Instantânea:</strong> Maneira simples e efetiva de trazer energias de equilíbrio e harmonia para ambientes, pessoas e objetos.</li>
+                    <li><strong>7. Sessão introdutória da EMF Balancing Technique:</strong> Aprenda a dar e receber esta sessão energética amorosa e nutritiva que ativa e calibra sua Malha.</li>
+                    <li><strong>8. Ative e direcione a energia com os olhos:</strong> Um exercício que demonstra o poder do padrão de energia da figura em 8.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass-box reveal">
+            <span class="section-tag">O Legado</span>
+            <h2>Peggy Phoenix Dubro e a Origem do Trabalho</h2>
+            <div class="about-grid">
+                <div class="about-photo">
+                    <img src="../assets/foto gustavo.png" alt="Gustavo Amorim" />
+                </div>
+                <div class="content-text">
+                    <p>Este trabalho nasceu em 1988, quando Peggy Phoenix Dubro experimentou a energia "sem começo e sem fim" e o padrão ressonante da Malha de Calibração Universal foi ativado dentro do seu campo.</p>
+                    <p>Naquela ocasião, ela recebeu uma mensagem clara: <em>"Um dia o ser humano saberá da importância do campo eletromagnético e da evolução consciente"</em>. Esse dia está aqui.</p>
+                    <p>Gustavo Amorim é palestrante, professor, escritor e tradutor e uma das principais referências brasileiras na difusão das canalizações de Kryon. Com transição de carreira da Engenharia Metalúrgica para a espiritualidade, ele fundou o canal O Farol, que se tornou um hub central para o ensino da "Nova Energia" no Brasil.</p>
+                    <p>Além de seu papel como tradutor oficial das mensagens de Kryon através de Lee Carroll, Gustavo atua como o principal organizador de eventos e tradutor para diversos integrantes da Família Kryon, conectando o público brasileiro a nomes de renome mundial na ciência e na cura energética.</p>
+                    <p><strong style="color: var(--accent-gold);">Gustavo Amorim</strong> é professor da EMF Balancing Technique há 25 anos, tendo sido o primeiro professor da América Latina e atua até hoje como tradutor dos eventos online da originadora do trabalho Peggy Phoenix Dubro.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-box reveal">
+            <span class="section-tag">Reconhecimento Notável</span>
+            <h2>Endossos Sobre o Trabalho</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;">
+                <div style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
+                    <p style="font-style: italic; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.6;">“O trabalho inovador de Peggy com o campo de toda a vida nos leva ao lugar em nós mesmos onde começam o amor, a cura e a paz. Suas técnicas/ensinamentos são práticos, eficazes e funcionam!”</p>
+                    <p style="font-weight: 700; color: var(--accent-gold);">Gregg Braden</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Autor best-seller do New York Times</p>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
+                    <p style="font-style: italic; font-size: 1.1rem; margin-bottom: 20px; line-height: 1.6;">"A Malha de Calibração Universal é a porta de entrada para a Malha Cósmica. Este é o trabalho energético que Kryon predisse."</p>
+                    <p style="font-weight: 700; color: var(--accent-gold);">Lee Carroll</p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Canalizador de Kryon</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="investimento" class="glass-box reveal" style="text-align: center; border: 2px solid var(--accent-gold);">
+            <span class="section-tag">Acesso Workshop</span>
+            <h3 style="font-size: 2.5rem; margin-bottom: 20px;">Investimento</h3>
+            <div style="font-size: 4rem; color: var(--accent-gold); font-weight: 800; margin-bottom: 30px;">R$ 370,00</div>
+            <div class="content-text" style="text-align: left; max-width: 500px; margin: 0 auto 40px;">
+                <p>• 6 horas de Workshop (Online e Ao Vivo)<br>
+                • Manual Ilustrado Digital Completo<br>
+                • Vídeos de Instrução de Sessões<br>
+                • Acesso à Gravação por 12 meses<br>
+                • Garantia de Satisfação de 7 dias</p>
+            </div>
+            <a href="https://site.faroldeluz.com.br/ucl/" class="btn" style="width: 100%;">QUERO MINHA VAGA AGORA</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Farol de Luz - Gustavo Amorim | Canal Oficial de Kryon no Brasil</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
