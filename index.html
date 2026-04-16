@@ -281,10 +281,11 @@
             </div>
 
             <!-- Mensagem de Sucesso (Invisível por padrão) -->
-            <div class="form-card" id="success-message">
+            <div class="form-card" id="success-message" style="display: none;">
                 <div style="font-size: 4rem; color: var(--accent-gold); margin-bottom: 20px;">✓</div>
-                <h2>Parabéns!</h2>
-                <p>Seu guia está sendo enviado para o seu e-mail agora mesmo.</p>
+                <h2>Acesso Liberado!</h2>
+                <p>O seu guia já pode ser baixado clicando no botão abaixo.</p>
+                <a href="assets/guia_calibracao.pdf" download="Guia_Pratico_de_Calibracao_Gustavo_Amorim.pdf" id="download-btn" class="btn" style="text-decoration: none; display: inline-block; margin: 20px 0; background: var(--accent-gold); color: #000; padding: 15px 30px; border-radius: 8px; font-weight: bold;">BAIXAR GUIA AGORA (PDF)</a>
                 <p style="margin-top: 15px; font-size: 0.95rem;">Enquanto isso, que tal dar o próximo passo e dominar a técnica completa?</p>
                 <a href="ucl/" class="btn-next">Ver Workshop UCL ➔</a>
             </div>
@@ -331,6 +332,10 @@
                 document.getElementById('form-main').style.display = 'none';
                 document.getElementById('success-message').style.display = 'block';
                 
+                // Disparar download automático
+                const downloadBtn = document.getElementById('download-btn');
+                downloadBtn.click();
+
                 // Track lead (Simulação)
                 console.log("Lead capturado:", {
                     nome: document.getElementById('name').value,
