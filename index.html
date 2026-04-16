@@ -128,10 +128,14 @@
             width: 100%;
             max-width: 320px;
             border-radius: 8px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
             transform: rotateY(-15deg) rotateX(5deg);
             transition: all 0.5s ease;
-            filter: brightness(1.1);
+            animation: energy-pulse 4s ease-in-out infinite;
+        }
+        @keyframes energy-pulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); }
+            50% { filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.6)); }
         }
         .pdf-mockup:hover {
             transform: rotateY(0deg) rotateX(0deg) scale(1.05);
@@ -246,7 +250,7 @@
             </ul>
 
             <div class="mockup-container">
-                <img src="assets/WhatsApp Image 2026-04-14 at 22.36.47.jpeg" alt="Guia Prático de Calibração PDF" class="pdf-mockup">
+                <img src="assets/livro_sem_fundo.png" alt="Guia Prático de Calibração PDF" class="pdf-mockup">
             </div>
         </div>
 
