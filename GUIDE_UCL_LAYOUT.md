@@ -37,4 +37,4 @@ O formulário de captura (`index.html`) está integrado com um Google Apps Scrip
 2. Mantenha o script de `fetch` apontando para a URL do Web App configurada.
 
 ---
-*Configurado por Antigravity (AI Assistant) para o portal Farol de Luz.*
+*Configurado para o portal Farol de Luz.*
