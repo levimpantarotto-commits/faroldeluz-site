@@ -7,136 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <!-- CSS Padrão (UCL Layout) -->
+    <link rel="stylesheet" href="../assets/ucl-template.css">
+    
     <style>
-        :root {
-            --primary-bg: #030712;
-            --secondary-bg: #0b1120;
-            --accent-gold: #d4af37;
-            --accent-gold-bright: #fcd34d;
-            --text-light: #f8f9fa;
-            --text-muted: #94a3b8;
-            --glass: rgba(15, 23, 42, 0.6);
-            --glass-border: rgba(212, 175, 55, 0.2);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--primary-bg);
-            color: var(--text-light);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* --- Estilo Universo (Stars & Nebula) --- */
-        .universe-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #030712 100%);
-            overflow: hidden;
-        }
-
-        .stars {
-            position: absolute;
-            top: 0; left: 0; width: 200%; height: 200%;
-            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-            opacity: 0.4;
-            animation: move-stars 150s linear infinite;
-        }
-
-        @keyframes move-stars {
-            from { transform: translate(0, 0); }
-            to { transform: translate(-50%, -50%); }
-        }
-
-        .nebula {
-            position: absolute;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
-            filter: blur(80px);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        /* --- Typography & Layout --- */
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
-
-        section { padding: 100px 0; position: relative; }
-
-        /* --- White Offer Card (Novo estilo do usuário - Compacto) --- */
-        .white-card {
-            background: #ffffff;
-            color: #363457;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 480px;
-            margin: 30px auto;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .white-card h3 {
-            color: #363457;
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            line-height: 1.1;
-        }
-
-        .white-card ul {
-            list-style: none;
-            display: inline-block;
-            text-align: left;
-            margin-bottom: 15px;
-        }
-
-        .white-card li {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 400;
-        }
-
-        .white-card li::before {
-            content: '✔';
-            color: #363457;
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        .white-card .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin: 5px 0 15px 0;
-            display: block;
-        }
-
-        .white-card .action-btn {
-            background: #363457;
-            color: #fff;
-            padding: 12px 35px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            border-radius: 5px;
-            display: inline-block;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .white-card .footer-info {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.8;
-            line-height: 1.4;
-        }
-
-        /* --- Hero Section --- */
+        /* Estilos específicos desta página (imagens e seções personalizadas) */
         .hero {
             padding: 120px 0 60px;
             display: flex;
@@ -145,7 +20,6 @@
             text-align: center;
         }
 
-        /* --- Image Layouts --- */
         .hero-header-split {
             display: grid;
             grid-template-columns: 200px 1fr;
@@ -155,12 +29,18 @@
             max-width: 1000px;
             margin: 0 auto 50px;
         }
+
+        @media (max-width: 768px) {
+            .hero-header-split { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+        }
+
         .hero-centered {
             max-width: 900px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
+
         .hero-symbol-bg {
             position: absolute;
             top: 50%;
@@ -171,84 +51,23 @@
             z-index: -1;
             pointer-events: none;
         }
-        .hero-emblem {
-            width: 100%;
-            max-width: 200px;
-            filter: drop-shadow(0 0 30px rgba(212,175,55,0.5));
-            animation: pulseSimple 5s ease-in-out infinite;
-        }
-        @keyframes pulseSimple {
-            0%, 100% { transform: scale(1); opacity: 0.85; }
-            50% { transform: scale(1.03); opacity: 1; }
-        }
-        @media (max-width: 768px) {
-            .hero-header-split { grid-template-columns: 1fr; text-align: center; justify-items: center; }
-            .hero-emblem { margin-bottom: 20px; }
-        }
+
         .section-with-image {
             display: grid;
             grid-template-columns: 260px 1fr;
             gap: 40px;
             align-items: center;
         }
+
         .section-img {
             width: 100%;
             filter: drop-shadow(0 0 30px rgba(212,175,55,0.4));
         }
-        .section-with-image {
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-        .section-img {
-            width: 100%;
-            filter: drop-shadow(0 0 30px rgba(212,175,55,0.4));
-        }
-        .emf-symbol-badge {
-            width: 80px;
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 15px;
-            filter: drop-shadow(0 0 15px rgba(212,175,55,0.5));
-        }
+
         @media (max-width: 768px) {
-            .hero-with-image { grid-template-columns: 1fr; text-align: center; }
             .section-with-image { grid-template-columns: 1fr; }
         }
 
-        .hero-content {
-            max-width: 900px;
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        h1 {
-            font-size: 3.8rem;
-            line-height: 1.2;
-            margin-bottom: 10px;
-            color: #fff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        .hero p { font-size: 1.3rem; color: var(--text-muted); margin-bottom: 20px; }
-
-        .btn {
-            display: inline-block;
-            padding: 22px 55px;
-            background: linear-gradient(135deg, var(--accent-gold) 0%, #b8860b 100%);
-            color: #000;
-            text-decoration: none;
-            font-weight: 700;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-            text-transform: uppercase;
-        }
-
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5); }
-
-        /* --- Content Blocks --- */
         .glass-box {
             background: var(--glass);
             backdrop-filter: blur(12px);
@@ -268,8 +87,6 @@
             margin-bottom: 20px;
         }
 
-        h2 { font-size: 2.8rem; margin-bottom: 30px; text-align: left; }
-
         .content-text p { margin-bottom: 20px; font-size: 1.15rem; color: #e2e8f0; }
 
         .curriculum-list { list-style: none; margin-top: 30px; }
@@ -286,7 +103,6 @@
 
         footer { padding: 80px 0; text-align: center; border-top: 1px solid var(--glass-border); color: var(--text-muted); }
 
-        /* --- Foto Gustavo --- */
         .about-grid {
             display: grid;
             grid-template-columns: 380px 1fr;
@@ -300,13 +116,9 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.22rem !important; color: #fff !important; background: none !important; -webkit-text-fill-color: initial !important; }
-            .hero p { font-size: 1.1rem !important; color: #eee !important; }
-            .btn { background: #D4AF37 !important; color: #000 !important; font-weight: bold !important; padding: 18px 40px !important; }
-            .hero-symbol-bg { opacity: 0.15 !important; }
-            h2 { font-size: 2rem; }
             .about-grid { grid-template-columns: 1fr; }
             .about-photo { max-width: 300px; margin: 0 auto; }
+            .glass-box { padding: 30px; }
         }
     </style>
 </head>
