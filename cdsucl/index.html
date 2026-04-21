@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Malha de Calibração Universal em Caxias do Sul | Gustavo Amorim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <!-- CSS Padrão (UCL Layout) -->
+    <link rel="stylesheet" href="../assets/ucl-template.css">
+    
+    <style>
+        /* Estilos específicos desta página (imagens e seções personalizadas) */
+        .hero {
+            padding: 120px 0 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-header-split {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            align-items: center;
+            text-align: left;
+            max-width: 1000px;
+            margin: 0 auto 50px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-header-split { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+        }
+
+        .hero-centered {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-symbol-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .presencial-highlight {
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid var(--accent-gold);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-with-image {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .section-img {
+            width: 100%;
+            filter: drop-shadow(0 0 30px rgba(212,175,55,0.4));
+        }
+
+        @media (max-width: 768px) {
+            .section-with-image { grid-template-columns: 1fr; }
+        }
+
+        .glass-box {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            padding: 50px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .section-tag {
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .content-text p { margin-bottom: 20px; font-size: 1.15rem; color: #e2e8f0; }
+
+        .curriculum-list { list-style: none; margin-top: 30px; }
+        .curriculum-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; gap: 15px;
+            align-items: flex-start;
+        }
+        .curriculum-list li::before { content: '✦'; color: var(--accent-gold); font-weight: bold; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { padding: 80px 0; text-align: center; border-top: 1px solid var(--glass-border); color: var(--text-muted); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-photo img {
+            width: 100%;
+            display: block;
+            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.3));
+        }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .about-photo { max-width: 300px; margin: 0 auto; }
+            .glass-box { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="universe-bg">
+        <div class="stars"></div>
+        <div class="nebula" style="top: 15%; right: 10%;"></div>
+        <div class="nebula" style="bottom: 15%; left: 10%;"></div>
+    </div>
+
+    <section class="hero">
+        <img src="../assets/emf_symbol.png" alt="" class="hero-symbol-bg" />
+        <div class="container">
+            <div class="hero-header-split">
+                <img src="../assets/emf_symbol.png" alt="EMF Gold Symbol" class="hero-emblem" />
+                <div>
+                    <span class="section-tag">Edição Presencial Especial</span>
+                    <h1>Workshop Introdutório Malha de Calibração Universal em Caxias do Sul</h1>
+                    <p style="font-size: 1.25rem; color: var(--text-muted); margin: 0;">Um Sistema Evolucionário em seu Corpo Energético.</p>
+                </div>
+            </div>
+
+            <!-- Box Presencial Destaque -->
+            <div class="presencial-highlight reveal">
+                <span class="section-tag">Quando e Onde</span>
+                <h2 style="color: #fff; margin-bottom: 10px;">02 de Julho de 2026</h2>
+                <p style="font-size: 1.3rem; color: var(--accent-gold); font-weight: 600;">Espaço RAYANTERAPIA</p>
+                <p style="color: #cbd5e1;">Rua Antônio Prado 82, Bairro Exposição - Caxias do Sul / RS</p>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-muted);">Horário: 09:30 às 17:30 (01:30 de almoço)</p>
+            </div>
+
+            <div class="hero-centered">
+                <div class="white-card" style="margin: 0 auto; max-width: 600px; text-align: left;">
+                    <div class="tag" style="background: var(--accent-gold); color: #000; padding: 2px 8px; font-size: 0.7rem; font-weight: bold; display: inline-block; margin-bottom: 10px;">CURSO PRESENCIAL</div>
+                    <h3>Workshop UCL (Malha de Calibração Universal)</h3>
+                    <ul>
+                        <li>Vagas Limitadas (Presencial)</li>
+                        <li>Material Didático Impresso</li>
+                        <li>Certificação de Participação</li>
+                        <li>Prática Assistida e Supervisionada</li>
+                    </ul>
+                    <span class="price">CONSULTE VALORES</span>
+                    <a href="https://pag.ae/81HBh5tnK" class="action-btn">GARANTIR MINHA VAGA (PRESENCIAL)</a>
+                    <div class="footer-info">
+                        CONTATO: (54) 98101-1661 | ESPAÇO RAYANTERAPIA
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        
+        <div class="glass-box reveal">
+            <span class="section-tag">Introdução</span>
+            <h2>O Chamado da Grande Evolução</h2>
+            <div class="content-text">
+                <p>Nesta era da Grande Evolução, estamos elevando a frequência de nossa energia da maneira mais consciente e coerente, tanto pessoal quanto coletivamente. Em algum nível, cada um de nós sabe que escolhemos estar aqui neste exato momento!</p>
+                <p>A consciência humana está evoluindo e essa evolução se reflete em seu corpo energético. Você está pronto para aprender como acessar mais de sua energia universal e como direcionar essa energia com maior clareza e sabedoria?</p>
+            </div>
+        </div>
+
+        <div class="glass-box reveal">
+            <span class="section-tag">A Estrutura</span>
+            <h2>O que é a Malha (UCL)??</h2>
+            <div class="section-with-image">
+                <div>
+                    <img src="../assets/malha_nobg.png" alt="Malha de Calibração Universal" class="section-img" style="border-radius: 0;" />
+                </div>
+                <div class="content-text">
+                    <p>A Malha de Calibração Universal (Universal Calibration Lattice&reg; – UCL) é um sistema em sua anatomia energética, irradiando do próprio centro de seu ser. A primeira parte do Programa de Crescimento Pessoal é uma introdução aprofundada à teoria e dinâmica da sua Malha de Calibração Universal.</p>
+                    <p>Nesse workshop presencial, você aprenderá como a Malha impacta sua consciência e experimentará como ela apoia sua habilidade de co-criar sua vida mais iluminada! Você terá a oportunidade de praticar esses exercícios sob supervisão direta, acelerando seu aprendizado.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-box reveal">
+            <span class="section-tag">Conteúdo</span>
+            <h2>O Que Você Vai Aprender</h2>
+            <div class="content-text">
+                <p>Nesta aula você aprenderá os fundamentos da Malha de Calibração Universal para se tornar mais de quem você é na energia do amor infinito.</p>
+                <ul class="curriculum-list">
+                    <li><strong>1. Teoria da Malha de Calibração Universal:</strong> Aprenda os fundamentos da Malha de Calibração Universal, a evolução da sua anatomia energética, que lhe permitirá integrar mais de quem você é na energia do amor infinito.</li>
+                    <li><strong>2. Varredura em Espiral:</strong> Um exercício único para energizar todo o seu corpo, o sistema ósseo, o sistema nervoso central, o sistema endócrino e o sistema energético dos chakras, elevando sua vibração.</li>
+                    <li><strong>3. Teoria dos Padrões Sagrados de Luz e Energia:</strong> Os Padrões Sagrados são padrões de energia em forma de octaedro dentro de sua Malha. Cada padrão é preenchido com os padrões geométricos únicos de quem você é.</li>
+                    <li><strong>4. Varredura Alternante:</strong> Um exercício em 3 passos para potencializar sua intenção co-criativa.</li>
+                    <li><strong>5. Símbolo de Ativação Energética:</strong> Uma maneira rápida e fácil de ativar a energia de harmonia e equilíbrio para qualquer pessoa e situação.</li>
+                    <li><strong>6. Símbolo de Energização Instantânea:</strong> Maneira simples e efetiva de trazer energias de equilíbrio e harmonia para ambientes, pessoas e objetos.</li>
+                    <li><strong>7. Sessão introdutória da EMF Balancing Technique:</strong> Aprenda a dar e receber esta sessão energética amorosa e nutritiva que ativa e calibra sua Malha.</li>
+                    <li><strong>8. Ative e direcione a energia com os olhos:</strong> Um exercício que demonstra o poder do padrão de energia da figura em 8.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="glass-box reveal">
+            <span class="section-tag">O Legado</span>
+            <h2>Peggy Phoenix Dubro e a Origem do Trabalho</h2>
+            <div class="about-grid">
+                <div class="about-photo">
+                    <img src="../assets/foto gustavo.png" alt="Gustavo Amorim" />
+                </div>
+                <div class="content-text">
+                    <p>Este trabalho nasceu em 1988, quando Peggy Phoenix Dubro experimentou a energia "sem começo e sem fim" e o padrão ressonante da Malha de Calibração Universal foi ativado dentro do seu campo.</p>
+                    <p>Naquela ocasião, ela recebeu uma mensagem clara: <em>"Um dia o ser humano saberá da importância do campo eletromagnético e da evolução consciente"</em>. Esse dia está aqui.</p>
+                    <p><strong style="color: var(--accent-gold);">Gustavo Amorim</strong> é Professor Supervisor da EMF Balancing Technique há 25 anos, primeiro professor da EMF na América Latina, tradutor oficial de Kryon no Brasil e fundador do canal O Farol.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="investimento" class="glass-box reveal" style="text-align: center; border: 2px solid var(--accent-gold);">
+            <span class="section-tag">Acesso Workshop Presencial</span>
+            <h3 style="font-size: 2.5rem; margin-bottom: 20px;">Fale com a Organização</h3>
+            <p style="margin-bottom: 30px; font-size: 1.1rem;">Garanta sua vaga para a edição presencial em Caxias do Sul.</p>
+            <div class="content-text" style="text-align: left; max-width: 500px; margin: 0 auto 40px;">
+                <p>• Curso Presencial em Caxias do Sul (Espaço RAYANTERAPIA)<br>
+                • Data: 02 de Julho de 2026<br>
+                • Material Didático Impresso Incluso<br>
+                • Práticas Supervisionadas Presenciais<br>
+                • Café e Networking Especial</p>
+            </div>
+            <a href="https://pag.ae/81HBh5tnK" class="btn" style="width: 100%;">INSREVER-SE AGORA</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Farol de Luz - Gustavo Amorim | Canal Oficial de Kryon no Brasil</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
