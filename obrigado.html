@@ -247,9 +247,9 @@
 
         <div class="upsell-box">
             <span style="color: var(--gold-light); font-weight: 700; letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase;">A Oportunidade</span>
-            <h2>Dê o próximo passo na sua anatomia energética.</h2>
-            <p>O Ebook que você vai receber te mostra as bases da Calibração Universal. Contudo, para colapsar imediatamente os velhos padrões e limpar bloqueios energéticos presos na sua assinatura informacional, você precisa aplicar o método passo a passo.</p>
-            <p>Eu liberei o acesso ao <strong>Workshop Introdutório (UCL)</strong> com uma condição que <strong>jamais ficará aberta ao público aberto</strong>.</p>
+            <h2>Dê o próximo passo na evolução de sua anatomia energética.</h2>
+            <p>O Ebook que você vai receber te mostra as origens divinas da Malha de Calibração Universal e como ela pode impactar sua vida. Contudo, para recalibrar os velhos padrões e ativar as novas dinâmicas energéticas da sua Malha, você precisa aplicar a técnica passo a passo.</p>
+            <p>O acesso ao <strong>Workshop Introdutório (UCL)</strong> já está liberado, com ótimas condições!</p>
             <br>
             <a href="ucl/index.html" class="btn-submit">SIM! EU QUERO ACESSAR O WORKSHOP</a>
             <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-muted);">Acesso imediato às 6 horas de aula e apostila ilustrada.</p>
@@ -278,16 +278,24 @@
             container.appendChild(star);
         }
 
-        // Auto-download do PDF
+        // Auto-download do PDF (via iframe oculto)
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('download') === 'true') {
-                const link = document.createElement('a');
-                link.href = 'assets/guia_calibracao.pdf';
-                link.download = 'Guia_Pratico_de_Calibracao_Gustavo_Amorim.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                const iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = 'assets/guia_calibracao.pdf';
+                document.body.appendChild(iframe);
+                
+                // Backup via link click (caso o iframe falhe em alguns navegadores)
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.href = 'assets/guia_calibracao.pdf';
+                    link.download = 'Guia_Pratico_de_Calibracao_Gustavo_Amorim.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }, 500);
             }
         }
     </script>
