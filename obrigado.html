@@ -277,6 +277,19 @@
             star.style.opacity = Math.random();
             container.appendChild(star);
         }
+
+        // Auto-download do PDF
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('download') === 'true') {
+                const link = document.createElement('a');
+                link.href = 'assets/guia_calibracao.pdf';
+                link.download = 'Guia_Pratico_de_Calibracao_Gustavo_Amorim.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
     </script>
 </body>
 </html>
