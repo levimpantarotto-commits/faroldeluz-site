@@ -346,6 +346,14 @@
             btn.innerText = "ENVIANDO...";
             btn.disabled = true;
 
+            // 1. DISPARAR DOWNLOAD IMEDIATAMENTE (Ação direta do usuário para evitar bloqueio)
+            const link = document.createElement('a');
+            link.href = 'assets/guia_calibracao.pdf';
+            link.download = 'Guia_Pratico_de_Calibracao_Gustavo_Amorim.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
             const formData = new URLSearchParams();
             formData.append('nome', document.getElementById('name').value);
             formData.append('email', document.getElementById('email').value);
@@ -356,21 +364,20 @@
 
             fetch(scriptURL, {
                 method: 'POST',
-                mode: 'no-cors', // Necessário para Google Apps Script
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: formData.toString()
             })
             .then(() => {
-                // Redirecionamento para o Upsell
+                // Redirecionamento para o Upsell após capturar o lead
                 window.location.href = 'obrigado.html';
             })
             .catch(error => {
                 console.error('Erro!', error.message);
-                btn.innerText = "ERRO AO ENVIAR. TENTE NOVAMENTE.";
-                btn.disabled = false;
-                setTimeout(() => { btn.innerText = originalBtnText; }, 3000);
+                // Mesmo com erro no script, vamos redirecionar em 3 segundos para não prender o usuário
+                setTimeout(() => { window.location.href = 'obrigado.html'; }, 2000);
             });
         });
 
