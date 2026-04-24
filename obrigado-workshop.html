@@ -228,6 +228,19 @@
             .upsell-section { padding: 40px 20px; }
         }
 
+        /* Video Container Nativo */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            border: 1px solid var(--accent-gold);
+            background-color: #000;
+            margin-bottom: 30px;
+        }
+
         /* Overlay de Som Profissional */
         .unmute-overlay {
             position: absolute;
@@ -258,9 +271,9 @@
         }
         
         @keyframes pulse-gold {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% { transform: scale(1); box-shadow: 0 15px 45px rgba(212, 175, 55, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 20px 60px rgba(212, 175, 55, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 15px 45px rgba(212, 175, 55, 0.4); }
         }
     </style>
 </head>
