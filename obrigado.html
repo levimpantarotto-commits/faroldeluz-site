@@ -250,28 +250,34 @@
         <script>
             (function() {
                 const video = document.getElementById('vsl-video');
+                const wppLink = document.getElementById('wpp-link');
                 
-                // Tenta iniciar o play agressivamente
+                // Força o mudo no início para garantir o autoplay
+                video.muted = true;
+                
                 const forcePlay = () => {
-                    video.play().catch(() => {
-                        // Se falhar (bloqueio de som), tenta de novo em 100ms
-                        setTimeout(forcePlay, 100);
-                    });
+                    video.play().catch(() => setTimeout(forcePlay, 100));
                 };
 
-                // Desmuta no primeiro movimento/interação
-                const unmute = () => {
+                const activateAudio = (e) => {
+                    // Se clicou no botão do WhatsApp, não faz nada aqui
+                    if (e && e.target && (e.target === wppLink || wppLink.contains(e.target))) {
+                        return;
+                    }
+                    
                     video.muted = false;
                     video.volume = 1;
-                    forcePlay();
-                    ['click', 'wheel', 'touchstart', 'mousemove'].forEach(e => {
-                        window.removeEventListener(e, unmute);
+                    video.play().catch(() => {});
+                    
+                    // Limpa os eventos
+                    ['click', 'wheel', 'touchstart', 'scroll'].forEach(ev => {
+                        window.removeEventListener(ev, activateAudio);
                     });
                 };
 
                 window.addEventListener('load', forcePlay);
-                ['click', 'wheel', 'touchstart', 'mousemove'].forEach(e => {
-                    window.addEventListener(e, unmute);
+                ['click', 'wheel', 'touchstart', 'scroll'].forEach(ev => {
+                    window.addEventListener(ev, activateAudio);
                 });
             })();
         </script>
