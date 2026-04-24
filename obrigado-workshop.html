@@ -255,45 +255,27 @@
         <div style="margin-bottom: 40px;">
             <p style="font-size: 1.1rem; color: var(--accent-gold); margin-bottom: 20px; font-weight: 600;">✦ Assista ao vídeo de boas-vindas abaixo:</p>
             <div class="video-wrapper">
-                <div id="player"></div>
+                <video id="vsl-video" preload="auto" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <source src="assets/video/vsl-ucl.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos.
+                </video>
             </div>
 
-            <script src="https://www.youtube.com/iframe_api"></script>
             <script>
-                let player;
-                function onYouTubeIframeAPIReady() {
-                    player = new YT.Player('player', {
-                        videoId: '8YC75EJ51FU',
-                        playerVars: {
-                            'autoplay': 1,
-                            'controls': 0,
-                            'mute': 2,
-                            'rel': 0,
-                            'modestbranding': 1,
-                            'loop': 1,
-                            'playlist': '8YC75EJ51FU'
-                        },
-                        events: {
-                            'onReady': onPlayerReady
-                        }
-                    });
-                }
-
-                function onPlayerReady(event) {
-                    event.target.playVideo();
-                    // Desmuta em qualquer interação
-                    const unmute = () => {
-                        if (player && player.unMute) {
-                            player.unMute();
-                            player.setVolume(100);
-                            player.playVideo();
-                            events.forEach(e => window.removeEventListener(e, unmute));
-                        }
-                    };
-                    
-                    const events = ['click', 'wheel', 'touchstart', 'mousemove', 'keydown'];
-                    events.forEach(e => window.addEventListener(e, unmute));
-                }
+                const video = document.getElementById('vsl-video');
+                const unmuteVideo = () => {
+                    if (video && video.muted) {
+                        video.muted = false;
+                        video.volume = 1;
+                        video.play();
+                        ['click', 'wheel', 'touchstart', 'mousemove', 'keydown'].forEach(e => {
+                            window.removeEventListener(e, unmuteVideo);
+                        });
+                    }
+                };
+                ['click', 'wheel', 'touchstart', 'mousemove', 'keydown'].forEach(e => {
+                    window.addEventListener(e, unmuteVideo);
+                });
             </script>
             
             <a href="https://chat.whatsapp.com/GkhlZ3RIoTJCMnXJ6RN8RA" style="display: inline-flex; align-items: center; justify-content: center; width: 100%; max-width: 450px; padding: 22px; background: #25D366; border: none; border-radius: 12px; color: #fff; font-weight: 800; font-size: 1.2rem; text-decoration: none; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);" target="_blank">

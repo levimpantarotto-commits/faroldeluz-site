@@ -206,45 +206,27 @@
         <div style="margin-bottom: 40px;">
             <span class="video-label">✦ Assista à mensagem do Gustavo abaixo:</span>
             <div class="video-wrapper">
-                <div id="player"></div>
+                <video id="vsl-video" preload="auto" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <source src="assets/video/vsl-emf.mp4" type="video/mp4">
+                    Seu navegador não suporta vídeos.
+                </video>
             </div>
 
-            <script src="https://www.youtube.com/iframe_api"></script>
             <script>
-                let player;
-                function onYouTubeIframeAPIReady() {
-                    player = new YT.Player('player', {
-                        videoId: 'LpErrCtm-Tw',
-                        playerVars: {
-                            'autoplay': 1,
-                            'controls': 0,
-                            'mute': 2,
-                            'rel': 0,
-                            'modestbranding': 1,
-                            'loop': 1,
-                            'playlist': 'LpErrCtm-Tw'
-                        },
-                        events: {
-                            'onReady': onPlayerReady
-                        }
-                    });
-                }
-
-                function onPlayerReady(event) {
-                    event.target.playVideo();
-                    // Desmuta em qualquer interação
-                    const unmute = () => {
-                        if (player && player.unMute) {
-                            player.unMute();
-                            player.setVolume(100);
-                            player.playVideo();
-                            events.forEach(e => window.removeEventListener(e, unmute));
-                        }
-                    };
-                    
-                    const events = ['click', 'wheel', 'touchstart', 'mousemove', 'keydown'];
-                    events.forEach(e => window.addEventListener(e, unmute));
-                }
+                const video = document.getElementById('vsl-video');
+                const unmuteVideo = () => {
+                    if (video && video.muted) {
+                        video.muted = false;
+                        video.volume = 1;
+                        video.play();
+                        ['click', 'wheel', 'touchstart', 'mousemove', 'keydown'].forEach(e => {
+                            window.removeEventListener(e, unmuteVideo);
+                        });
+                    }
+                };
+                ['click', 'wheel', 'touchstart', 'mousemove', 'keydown'].forEach(e => {
+                    window.addEventListener(e, unmuteVideo);
+                });
             </script>
             
             <a href="https://chat.whatsapp.com/EMDRge4fSqQIAPpq96txYj" class="btn-wpp" target="_blank">
