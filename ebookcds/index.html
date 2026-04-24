@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17990917293"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17990917293');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baixar Guia Prático de Calibração - Gustavo Amorim</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1991241654829958');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1991241654829958&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        :root {
+            --deep-space: #050b18;
+            --accent-gold: #c5a059;
+            --gold-light: #e2c275;
+            --gold-dark: #8e6d3b;
+            --text-light: #f0f2f5;
+            --text-muted: #a0aec0;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--deep-space);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Universe Background */
+        .universe-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #0a1931 0%, #050b18 100%);
+            z-index: -2;
+        }
+        .stars {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            z-index: -1;
+        }
+        .nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+        }
+
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
+            .hero-header-split { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+        }
+
+        /* Content */
+        .hero-header-split {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .hero-emblem {
+            width: 100%;
+            filter: drop-shadow(0 0 20px rgba(212,175,55,0.4));
+            animation: pulseSimple 5s ease-in-out infinite;
+        }
+        @keyframes pulseSimple {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, #fff, var(--gold-light), #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .benefits {
+            margin-bottom: 40px;
+            list-style: none;
+        }
+        .benefits li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            color: #cbd5e0;
+        }
+        .benefits li::before {
+            content: '✦';
+            color: var(--accent-gold);
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        /* Mockup */
+        .mockup-container {
+            margin-top: 40px;
+            perspective: 1000px;
+        }
+        .pdf-mockup {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 8px;
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
+            transform: rotateY(-15deg) rotateX(5deg);
+            transition: all 0.5s ease;
+            animation: energy-pulse 4s ease-in-out infinite;
+        }
+        @keyframes energy-pulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); }
+            50% { filter: drop-shadow(0 0 50px rgba(212, 175, 55, 0.6)); }
+        }
+        .pdf-mockup:hover {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.05);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        }
+
+        /* Glass Form */
+        .form-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        .form-group { margin-bottom: 25px; text-align: left; }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(255,255,255,0.07);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.1);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-dark) 100%);
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.2);
+        }
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.4);
+        }
+
+        .privacy { font-size: 0.8rem; color: #718096; margin-top: 20px; }
+
+        /* Success State */
+        #success-message { display: none; }
+        #success-message h2 { font-family: 'Playfair Display', serif; color: var(--gold-light); margin-bottom: 20px; }
+        .btn-next {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 18px 40px;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-next:hover { background: var(--accent-gold); color: #000; }
+
+        .footer { text-align: center; padding: 40px; color: #4a5568; font-size: 0.9rem; }
+
+    </style>
+</head>
+<body>
+
+    <div class="universe-bg">
+        <div class="stars"></div>
+        <div class="nebula" style="top: 10%; right: 10%; background: rgba(52,152,219,0.2); width: 400px; height: 400px;"></div>
+        <div class="nebula" style="bottom: 10%; left: 5%; background: rgba(197,160,89,0.1); width: 500px; height: 500px;"></div>
+    </div>
+
+    <div class="container">
+        <!-- Esquerda: Conteúdo -->
+        <div class="hero-content">
+            <div class="hero-header-split">
+                <img src="../assets/emf_symbol.png" alt="EMF Gold Symbol" class="hero-emblem" />
+                <div>
+                    <h1>A Evolução de sua Anatomia Energética</h1>
+                </div>
+            </div>
+            
+            <p>Conheça as origens da Malha de Calibração Universal e da EMF Balancing Technique com esse Ebook retirado do livro 7 de Kryon "As Cartas de Casa"</p>
+            
+            <ul class="benefits">
+                <li>A origem Espiritual da Malha de Calibração Universal</li>
+                <li>O presente do Sagrado Feminino</li>
+                <li>Alinhamento com a Nova Energia de Kryon</li>
+            </ul>
+
+            <div class="mockup-container">
+                <img src="../assets/livro_sem_fundo.png" alt="Guia Prático de Calibração PDF" class="pdf-mockup">
+            </div>
+        </div>
+
+        <!-- Direita: Formulário -->
+        <div class="form-container">
+            <div class="form-card" id="form-main">
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem;">Acesso Gratuito Imediato</h2>
+                    <p style="font-size: 0.9rem; color: #a0aec0;">Preencha os campos abaixo para receber o seu PDF e o convite para a nossa Comunidade VIP.</p>
+                </div>
+
+                <form id="lead-form">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" id="name" placeholder="Como quer ser chamado?" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Seu Melhor E-mail</label>
+                        <input type="email" id="email" placeholder="exemplo@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp (com DDD)</label>
+                        <input type="tel" id="whatsapp" placeholder="(00) 90000-0000" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Quero Receber o Guia em PDF</button>
+                    <p class="privacy">✦ Respeitamos sua privacidade. Protegemos seus dados.</p>
+                </form>
+            </div>
+
+            <!-- Mensagem de Sucesso (Invisível por padrão) -->
+            <div class="form-card" id="success-message" style="display: none;">
+                <div style="font-size: 4rem; color: var(--accent-gold); margin-bottom: 20px;">✓</div>
+                <h2>Acesso Liberado!</h2>
+                <p>O seu guia já pode ser baixado clicando no botão abaixo.</p>
+                <a href="../assets/guia_calibracao.pdf" download="Guia_Pratico_de_Calibracao_Gustavo_Amorim.pdf" id="download-btn" class="btn" style="text-decoration: none; display: inline-block; margin: 20px 0; background: var(--accent-gold); color: #000; padding: 15px 30px; border-radius: 8px; font-weight: bold;">BAIXAR GUIA AGORA (PDF)</a>
+                <p style="margin-top: 15px; font-size: 0.95rem;">Enquanto isso, que tal dar o próximo passo e dominar a técnica completa?</p>
+                <a href="../ucl/" class="btn-next">Ver Workshop UCL ➔</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 Farol de Luz & Gustavo Amorim | O Legado de Peggy Phoenix Dubro no Brasil
+    </div>
+
+    <script>
+        // Criar estrelas animadas
+        function createStars() {
+            const container = document.getElementById('stars');
+            const count = 100;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const size = Math.random() * 2 + 1;
+                const duration = Math.random() * 3 + 2;
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.setProperty('--duration', `${duration}s`);
+                
+                container.appendChild(star);
+            }
+        }
+
+        // Form Submission
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button');
+            const originalBtnText = btn.innerText;
+            btn.innerText = "ENVIANDO...";
+            btn.disabled = true;
+
+            const formData = new URLSearchParams();
+            formData.append('nome', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('whats', document.getElementById('whatsapp').value);
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyDJ3ewKI9rmxvI6hHsNDpYmdTwLRUgoAFDUu4y6iGHGPeRkOji1tq4alja8kN1z91gZA/exec';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formData.toString()
+            })
+            .then(() => {
+                // Redirecionamento para o Obrigado com parâmetro de download
+                window.location.href = '../obrigado-ebookcds.html?download=true';
+            })
+            .catch(error => {
+                console.error('Erro!', error.message);
+                window.location.href = '../obrigado-ebookcds.html?download=true';
+            });
+        });
+
+        createStars();
+    </script>
+</body>
+</html>
