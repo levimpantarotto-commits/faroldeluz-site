@@ -168,24 +168,39 @@
             .container { padding: 40px 20px; }
         }
 
-        /* Video Container Nativo */
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            border: 1px solid var(--accent-gold);
-            background-color: #000;
-            margin-bottom: 30px;
-        }
-        .video-wrapper video {
+        /* Overlay de Som Profissional */
+        .unmute-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .unmute-overlay:hover { background: rgba(0,0,0,0.1); }
+        
+        .unmute-badge {
+            background: var(--accent-gold);
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 15px 45px rgba(212, 175, 55, 0.4);
+            animation: pulse-gold 2s infinite;
+            text-transform: uppercase;
+        }
+        
+        @keyframes pulse-gold {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
@@ -206,36 +221,41 @@
 
         <div style="margin-bottom: 40px;">
             <span class="video-label">✦ Assista à mensagem do Gustavo abaixo:</span>
-            <div class="video-wrapper">
+            <div class="video-wrapper" id="vsl-container" style="position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; border: 1px solid var(--accent-gold); margin-bottom: 30px; background: #000; cursor: pointer;">
                 <video id="vsl-video" preload="auto" autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
                     <source src="assets/video/vsl-emf.mp4" type="video/mp4">
                 </video>
+                <div class="unmute-overlay" id="unmute-overlay">
+                    <div class="unmute-badge">
+                        <svg style="width: 24px; height: 24px;" fill="currentColor" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                        CLIQUE PARA OUVIR
+                    </div>
+                </div>
             </div>
 
             <script>
                 (function() {
                     const video = document.getElementById('vsl-video');
+                    const overlay = document.getElementById('unmute-overlay');
+                    const container = document.getElementById('vsl-container');
                     const wppLink = document.getElementById('wpp-link');
                     
-                    video.muted = true;
-                    const forcePlay = () => {
-                        video.play().catch(() => setTimeout(forcePlay, 100));
-                    };
-                    const activateAudio = (e) => {
-                        if (e && e.target && (e.target === wppLink || wppLink.contains(e.target))) {
-                            return;
-                        }
+                    const unmuteAction = (e) => {
+                        if (e && e.target && (e.target === wppLink || wppLink.contains(e.target))) return;
                         video.muted = false;
                         video.volume = 1;
-                        video.play().catch(() => {});
-                        ['click', 'wheel', 'touchstart', 'scroll'].forEach(ev => {
-                            window.removeEventListener(ev, activateAudio);
-                        });
+                        video.play();
+                        overlay.style.opacity = '0';
+                        setTimeout(() => overlay.style.display = 'none', 300);
+                        ['click', 'touchstart'].forEach(ev => window.removeEventListener(ev, unmuteAction));
+                        container.removeEventListener('click', unmuteAction);
                     };
-                    window.addEventListener('load', forcePlay);
-                    ['click', 'wheel', 'touchstart', 'scroll'].forEach(ev => {
-                        window.addEventListener(ev, activateAudio);
-                    });
+
+                    video.muted = true;
+                    video.play().catch(() => {});
+                    container.addEventListener('click', unmuteAction);
+                    window.addEventListener('click', unmuteAction);
+                    window.addEventListener('touchstart', unmuteAction);
                 })();
             </script>
             
