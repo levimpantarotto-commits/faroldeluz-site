@@ -119,10 +119,10 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Video Container */
+        /* Video Container Hack para esconder UI do YT */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 */
             height: 0;
             border-radius: 20px;
             overflow: hidden;
@@ -133,7 +133,12 @@
         }
         .video-wrapper iframe {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 50%;
+            left: 50%;
+            width: 130%; /* Aumenta o tamanho para cortar as bordas */
+            height: 130%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Evita que o usuário clique nos controles do YT */
         }
 
         /* Upsell Section */
@@ -239,8 +244,47 @@
         
         <!-- Video VSL do Upsell -->
         <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/jbtSOy6uEfk?autoplay=1&controls=0&mute=1&rel=0&modestbranding=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div id="player"></div>
         </div>
+
+        <script src="https://www.youtube.com/iframe_api"></script>
+        <script>
+            let player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    videoId: 'jbtSOy6uEfk',
+                    playerVars: {
+                        'autoplay': 1,
+                        'controls': 0,
+                        'mute': 1,
+                        'rel': 0,
+                        'modestbranding': 1,
+                        'loop': 1,
+                        'playlist': 'jbtSOy6uEfk'
+                    },
+                    events: {
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+                // Desmuta em qualquer interação (clique, scroll ou toque)
+                const unmute = () => {
+                    player.unMute();
+                    player.playVideo();
+                    // Limpa os eventos para não repetir
+                    window.removeEventListener('click', unmute);
+                    window.removeEventListener('wheel', unmute);
+                    window.removeEventListener('touchstart', unmute);
+                };
+                
+                window.addEventListener('click', unmute);
+                window.addEventListener('wheel', unmute);
+                window.addEventListener('touchstart', unmute);
+            }
+        </script>
 
         <div class="upsell-box">
             <span style="color: var(--gold-light); font-weight: 700; letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase;">A Oportunidade</span>
