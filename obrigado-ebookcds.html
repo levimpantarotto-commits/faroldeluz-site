@@ -330,6 +330,7 @@
             if (!video || !overlay || !container) return;
 
             const unmuteAction = (e) => {
+                // Prevenir que o clique no link de WhatsApp ou download dispare o desmudo se não for intencional
                 const wppLink = document.getElementById('wpp-link');
                 if (e && e.target && wppLink && (e.target === wppLink || wppLink.contains(e.target))) return;
 
@@ -339,15 +340,16 @@
                 overlay.style.opacity = '0';
                 setTimeout(() => overlay.style.display = 'none', 300);
                 
-                ['click', 'touchstart'].forEach(ev => window.removeEventListener(ev, unmuteAction));
                 container.removeEventListener('click', unmuteAction);
+                container.removeEventListener('touchstart', unmuteAction);
             };
 
             video.muted = true;
             video.play().catch(() => {});
+            
+            // Ouvir apenas no container do vídeo para garantir interação direta
             container.addEventListener('click', unmuteAction);
-            window.addEventListener('click', unmuteAction);
-            window.addEventListener('touchstart', unmuteAction);
+            container.addEventListener('touchstart', unmuteAction);
         })();
 
         // Auto-download do PDF (via iframe oculto)
